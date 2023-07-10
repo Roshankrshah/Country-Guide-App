@@ -1,4 +1,24 @@
 const searchBtn = document.getElementById("search-btn");
+const btnContainer = document.querySelector('.btn-group');
+const btns = document.querySelectorAll('.btn');
+const searchQuery = document.querySelectorAll('.search-wrapper');
+
+btnContainer.addEventListener('click',(e)=>{
+    const id = e.target.dataset.id;
+    if(id){
+        btns.forEach((btn)=>{
+            btn.classList.remove("active");
+        })
+        e.target.classList.add("active");
+        searchQuery.forEach((query)=>{
+            query.classList.remove("active");
+        })
+        const element = document.getElementById(id);
+        element.classList.add("active");
+    }
+});
+
+/*
 const countryInp = document.getElementById("country-inp");
 const result = document.querySelector(".result");
 
@@ -10,7 +30,7 @@ searchBtn.addEventListener("click", () => {
         /*console.log(data[0].capital[0]);
         console.log(data[0].flags.png);
         console.log(Object.keys(data[0].currencies)[0]);
-        console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
+        console.log(Object.values(data[0].languages).toString().split(',').join(', '))
 
         let displayDet = `
         <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
@@ -57,7 +77,7 @@ searchBtn.addEventListener("click", () => {
         
     })
 });
-
+*/
 const preloader = document.querySelector('.preloader');
 
 window.addEventListener('load',()=>{
