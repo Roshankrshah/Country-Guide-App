@@ -8,5 +8,8 @@ searchBtn.addEventListener("click",()=>{
 
     fetch(finalUrl).then((response)=> response.json()).then((data)=>{
         console.log(data[0].capital[0]);
+        console.log(data[0].flags.png);
+        console.log(data[0].currencies[Object.keys(data[0].currencies)].name);
+        console.log(Object.values(data[0].languages).toString().split(',').join(', '))
     })
 });
