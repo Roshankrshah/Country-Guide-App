@@ -7,9 +7,9 @@ searchBtn.addEventListener("click", () => {
     const finalUrl = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        console.log(data[0].capital[0]);
-        /*console.log(data[0].flags.png);
-        console.log(data[0].currencies[Object.keys(data[0].currencies)].name);
+        /*console.log(data[0].capital[0]);
+        console.log(data[0].flags.png);
+        console.log(Object.keys(data[0].currencies)[0]);
         console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
 
         let displayDet = `
@@ -36,7 +36,7 @@ searchBtn.addEventListener("click", () => {
         <div class="wrapper">
             <div class="data-wrapper">
                 <h4>Currency:</h4>
-                <span>${data[0].currencies[Object.keys(data[0].currencies)].name} - ${Object.keys(data[0].currencies)[0]}</span>
+                <span>${data[0].currencies[Object.keys(data[0].currencies)[0]].name} - ${Object.keys(data[0].currencies)[0]}</span>
             </div>
         </div>
         <div class="wrapper">
@@ -57,3 +57,9 @@ searchBtn.addEventListener("click", () => {
         
     })
 });
+
+const preloader = document.querySelector('.preloader');
+
+window.addEventListener('load',()=>{
+    preloader.classList.add("hide-preloader");
+})
