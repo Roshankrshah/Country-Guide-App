@@ -72,7 +72,7 @@ searchBtn1.addEventListener("click", () => {
         console.log(Object.keys(data[0].currencies)[0]);
         console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
 
-        let displayDet = fixedTemp(data);
+        let displayDet = fixedTemp(data, 0);
         result.innerHTML = displayDet;
 
     }).catch(() => {
@@ -91,13 +91,12 @@ searchBtn2.addEventListener("click", () => {
     const finalUrl = `https://restcountries.com/v3.1/name/${inputValue}`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        /*console.log(data.length);
-        console.log(data[0].flags.png);
-        console.log(Object.keys(data[0].currencies)[0]);
-        console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
+        if(data.message){
+            throw "not found";
+        }
 
         const countries = [];
-        for (let i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length && i<50; i++) {
             countries.push(i);
         }
         const countryBtns = countries
@@ -133,52 +132,38 @@ searchBtn2.addEventListener("click", () => {
 });
 
 searchBtn3.addEventListener("click", () => {
-    console.log("Lana Rhodes");
     const regionInp = document.getElementById("region-inp");
     const inputValue = regionInp.value;
     const finalUrl = `https://restcountries.com/v3.1/region/${inputValue}`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        /*console.log(data[0].capital[0]);
-        console.log(data[0].flags.png);
-        console.log(Object.keys(data[0].currencies)[0]);
-        console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
+        if(data.message){
+            throw "not found";
+        }
 
-        let displayDet = `
-        <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
-        <h2>${data[0].name.common}</h2>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Capital:</h4>
-                <span>${data[0].capital[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Continent:</h4>
-                <span>${data[0].continents[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Population:</h4>
-                <span>${data[0].population}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Currency:</h4>
-                <span>${data[0].currencies[Object.keys(data[0].currencies)[0]].name} - ${Object.keys(data[0].currencies)[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Common Languages:</h4>
-                <span>${Object.values(data[0].languages).toString().split(',').join(', ')}</span>
-            </div>
-        </div>`
+        const countries = [];
+        for (let i = 0; i < data.length&& i<40; i++) {
+            countries.push(i);
+        }
+        const countryBtns = countries
+            .map(function (country) {
+                return `<button type="button" class="filter-btn" data-id=${country}>
+            ${data[country].name.common}
+          </button>`;
+            })
+            .join("");
 
-        result.innerHTML = displayDet;
+        result.innerHTML = countryBtns;
+
+        const filterBtns = result.querySelectorAll(".filter-btn");
+        filterBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                const category = e.currentTarget.dataset.id;
+                const idx = parseInt(category);
+                let displayDet = fixedTemp(data, idx);
+                result.innerHTML = displayDet;
+            })
+        })
 
     }).catch(() => {
         if (inputValue.length == 0) {
@@ -191,18 +176,12 @@ searchBtn3.addEventListener("click", () => {
 });
 
 searchBtn4.addEventListener("click", () => {
-    console.log("Dani Daniels");
     const capitalInp = document.getElementById("capital-inp");
     const inputValue = capitalInp.value;
     const finalUrl = `https://restcountries.com/v3.1/capital/${inputValue}`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        /*console.log(data[0].capital[0]);
-        console.log(data[0].flags.png);
-        console.log(Object.keys(data[0].currencies)[0]);
-        console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
-
-        let displayDet = fixedTemp(data);
+        let displayDet = fixedTemp(data, 0);
         result.innerHTML = displayDet;
 
     }).catch(() => {
