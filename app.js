@@ -25,6 +25,42 @@ btnContainer.addEventListener('click', (e) => {
 
 const result = document.querySelector(".result");
 
+function fixedTemp(data) {
+    return `
+    <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
+    <h2>${data[0].name.common}</h2>
+    <div class="wrapper">
+        <div class="data-wrapper">
+            <h4>Capital:</h4>
+            <span>${data[0].capital[0]}</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="data-wrapper">
+            <h4>Continent:</h4>
+            <span>${data[0].continents[0]}</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="data-wrapper">
+            <h4>Population:</h4>
+            <span>${data[0].population}</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="data-wrapper">
+            <h4>Currency:</h4>
+            <span>${data[0].currencies[Object.keys(data[0].currencies)[0]].name} - ${Object.keys(data[0].currencies)[0]}</span>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="data-wrapper">
+            <h4>Common Languages:</h4>
+            <span>${Object.values(data[0].languages).toString().split(',').join(', ')}</span>
+        </div>
+    </div>`;
+}
+
 searchBtn1.addEventListener("click", () => {
     console.log("mia khalifa");
     const countryInp = document.getElementById("country-inp");
@@ -37,50 +73,17 @@ searchBtn1.addEventListener("click", () => {
         console.log(Object.keys(data[0].currencies)[0]);
         console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
 
-    let displayDet = `
-        <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
-        <h2>${data[0].name.common}</h2>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Capital:</h4>
-                <span>${data[0].capital[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Continent:</h4>
-                <span>${data[0].continents[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Population:</h4>
-                <span>${data[0].population}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Currency:</h4>
-                <span>${data[0].currencies[Object.keys(data[0].currencies)[0]].name} - ${Object.keys(data[0].currencies)[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Common Languages:</h4>
-                <span>${Object.values(data[0].languages).toString().split(',').join(', ')}</span>
-            </div>
-        </div>`
+        let displayDet = fixedTemp(data);
+        result.innerHTML = displayDet;
 
-    result.innerHTML = displayDet;
+    }).catch(() => {
+        if (inputValue.length == 0) {
+            result.innerHTML = `<h3>The input field cannot be empty</h3>`;
+        } else {
+            result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
+        }
 
-}).catch(() => {
-    if (inputValue.length == 0) {
-        result.innerHTML = `<h3>The input field cannot be empty</h3>`;
-    } else {
-        result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
-    }
-
-})
+    })
 });
 
 searchBtn2.addEventListener("click", () => {
@@ -90,12 +93,12 @@ searchBtn2.addEventListener("click", () => {
     const finalUrl = `https://restcountries.com/v3.1/name/${inputValue}`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        /*console.log(data[0].capital[0]);
-        console.log(data[0].flags.png);
+        console.log(data.length);
+        /*console.log(data[0].flags.png);
         console.log(Object.keys(data[0].currencies)[0]);
         console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
 
-    let displayDet = `
+        let displayDet = `
         <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
         <h2>${data[0].name.common}</h2>
         <div class="wrapper">
@@ -129,16 +132,16 @@ searchBtn2.addEventListener("click", () => {
             </div>
         </div>`
 
-    result.innerHTML = displayDet;
+        result.innerHTML = displayDet;
 
-}).catch(() => {
-    if (inputValue.length == 0) {
-        result.innerHTML = `<h3>The input field cannot be empty</h3>`;
-    } else {
-        result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
-    }
+    }).catch(() => {
+        if (inputValue.length == 0) {
+            result.innerHTML = `<h3>The input field cannot be empty</h3>`;
+        } else {
+            result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
+        }
 
-})
+    })
 });
 
 searchBtn3.addEventListener("click", () => {
@@ -153,7 +156,7 @@ searchBtn3.addEventListener("click", () => {
         console.log(Object.keys(data[0].currencies)[0]);
         console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
 
-    let displayDet = `
+        let displayDet = `
         <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
         <h2>${data[0].name.common}</h2>
         <div class="wrapper">
@@ -187,16 +190,16 @@ searchBtn3.addEventListener("click", () => {
             </div>
         </div>`
 
-    result.innerHTML = displayDet;
+        result.innerHTML = displayDet;
 
-}).catch(() => {
-    if (inputValue.length == 0) {
-        result.innerHTML = `<h3>The input field cannot be empty</h3>`;
-    } else {
-        result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
-    }
+    }).catch(() => {
+        if (inputValue.length == 0) {
+            result.innerHTML = `<h3>The input field cannot be empty</h3>`;
+        } else {
+            result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
+        }
 
-})
+    })
 });
 
 searchBtn4.addEventListener("click", () => {
@@ -211,50 +214,17 @@ searchBtn4.addEventListener("click", () => {
         console.log(Object.keys(data[0].currencies)[0]);
         console.log(Object.values(data[0].languages).toString().split(',').join(', '))*/
 
-    let displayDet = `
-        <img src="${data[0].flags.svg}" alt="data[0].flags.alt" class="flag-img" />
-        <h2>${data[0].name.common}</h2>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Capital:</h4>
-                <span>${data[0].capital[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Continent:</h4>
-                <span>${data[0].continents[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Population:</h4>
-                <span>${data[0].population}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Currency:</h4>
-                <span>${data[0].currencies[Object.keys(data[0].currencies)[0]].name} - ${Object.keys(data[0].currencies)[0]}</span>
-            </div>
-        </div>
-        <div class="wrapper">
-            <div class="data-wrapper">
-                <h4>Common Languages:</h4>
-                <span>${Object.values(data[0].languages).toString().split(',').join(', ')}</span>
-            </div>
-        </div>`
+        let displayDet = fixedTemp(data);
+        result.innerHTML = displayDet;
 
-    result.innerHTML = displayDet;
+    }).catch(() => {
+        if (inputValue.length == 0) {
+            result.innerHTML = `<h3>The input field cannot be empty</h3>`;
+        } else {
+            result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
+        }
 
-}).catch(() => {
-    if (inputValue.length == 0) {
-        result.innerHTML = `<h3>The input field cannot be empty</h3>`;
-    } else {
-        result.innerHTML = `<h3>Please enter a valid country name.</h3>`;
-    }
-
-})
+    })
 });
 
 const preloader = document.querySelector('.preloader');
