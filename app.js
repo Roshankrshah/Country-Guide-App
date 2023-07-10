@@ -91,12 +91,12 @@ searchBtn2.addEventListener("click", () => {
     const finalUrl = `https://restcountries.com/v3.1/name/${inputValue}`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        if(data.message){
+        if (data.message) {
             throw "not found";
         }
 
         const countries = [];
-        for (let i = 0; i < data.length && i<50; i++) {
+        for (let i = 0; i < data.length && i < 50; i++) {
             countries.push(i);
         }
         const countryBtns = countries
@@ -137,12 +137,12 @@ searchBtn3.addEventListener("click", () => {
     const finalUrl = `https://restcountries.com/v3.1/region/${inputValue}`;
 
     fetch(finalUrl).then((response) => response.json()).then((data) => {
-        if(data.message){
+        if (data.message) {
             throw "not found";
         }
 
         const countries = [];
-        for (let i = 0; i < data.length&& i<40; i++) {
+        for (let i = 0; i < data.length && i < 40; i++) {
             countries.push(i);
         }
         const countryBtns = countries

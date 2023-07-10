@@ -60,7 +60,7 @@ body {
     width: 50px;
     height: 50px;
     border-radius: 50%;
-  }
+}
 
 .search-wrapper {
     display: grid;
@@ -103,11 +103,23 @@ body {
 }
 
 .filter-btn:hover {
-    background: var(--clr-gold);
-    color: var(--clr-white);
+    background-color: #21aa86;
+    color: white;
 }
 
 #country-inp {
+    background-color: #eeeee4;
+}
+
+#name-inp {
+    background-color: #eeeee4;
+}
+
+#region-inp {
+    background-color: #eeeee4;
+}
+
+#capital-inp {
     background-color: #eeeee4;
 }
 
@@ -117,7 +129,8 @@ body {
 
 .container .flag-img {
     display: block;
-    width: 45%;
+    width: 35%;
+    height: auto;
     min-width: 7.5em;
     margin: 1.8em auto 1.2em auto;
 }
