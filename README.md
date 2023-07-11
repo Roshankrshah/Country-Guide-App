@@ -10,4 +10,4 @@ Find the details like geography, currency, languages etc of country by searching
 https://countryguide07.netlify.app
 
 ### Thanks to Restcountry API for providing awesome endpoints @ https://restcountries.com/
-### Thanks for netlify for providing free hosting  
+### Thanks for netlify for providing free hosting for my website  @ https://www.netlify.com/
